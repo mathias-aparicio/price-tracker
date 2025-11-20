@@ -1,0 +1,12 @@
+services:
+  web-server:
+    build: .
+    ports:
+      - "3000:3000"
+    restart: always
+    environment:
+      # REQUIRED: Set this to your actual public URL in production (e.g. https://myapp.com)
+      - ORIGIN=http://localhost:3000
+      # Optional: Start on a specific port if needed (default is 3000)
+      - PORT=3000
+      - NODE_ENV=production
