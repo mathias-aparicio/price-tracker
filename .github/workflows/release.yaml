@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
 
 jobs:
   publish-tauri:
@@ -19,6 +20,11 @@ jobs:
     runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2.0.3
+        with:
+          deno-version: 2.x
 
       - name: setup node
         uses: actions/setup-node@v4
