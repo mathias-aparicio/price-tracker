@@ -120,8 +120,9 @@
                 <div class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-xl bg-slate-800 p-2 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div class="space-y-1">
                         {#each TRACKED_ASSETS as asset}
-                            <div
-                                class="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 hover:bg-slate-700/50"
+                            <button
+                                type="button"
+                                class="flex w-full cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-left hover:bg-slate-700/50"
                                 on:click={() => toggleAsset(asset.id)}
                             >
                                 <div class="flex h-5 w-5 items-center justify-center rounded border border-slate-600 {visibleAssetIds.includes(asset.id) ? 'bg-indigo-500 border-indigo-500' : 'bg-transparent'}">
@@ -132,7 +133,7 @@
                                     {/if}
                                 </div>
                                 <span class="text-sm text-slate-200">{asset.name}</span>
-                            </div>
+                            </button>
                         {/each}
                     </div>
                 </div>

@@ -11,16 +11,17 @@ export interface AssetData {
     history: HistoryPoint[];
 }
 
+import { invoke } from '@tauri-apps/api/core';
+
 export async function fetchAssetData(asset: AssetConfig): Promise<AssetData> {
     console.log(`Fetching data for ${asset.id}...`);
     try {
-        const response = await fetch(`/api/price?id=${asset.id}`);
+        const data = await invoke<AssetData>('get_asset_data', { id: asset.id });
 
-        if (!response.ok) {
-            throw new Error(`Failed to fetch data for ${asset.id}`);
+        if (!data) {
+            throw new Error(`No data returned for ${asset.id}`);
         }
 
-        const data = await response.json();
         console.log(`Fetched data for ${asset.id}:`, data);
         return data;
     } catch (error) {
